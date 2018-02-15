@@ -182,15 +182,15 @@ logikk_tilstand_type nesteTilstandGittAapneDoer(int etasje, retning forrigeTilst
 	return IDLE;
 }
 
-void brems(retning forrigeTilstand){
+void brems(retning forrigeTilstand){ #Kan forandre i<X if for-løkka for å tilpasse det til heisen
 	if(forrigeTilstand == BEVEG_OPP){
-		for(i=0; i<1000;i++){
-					elev_set_speed(-300);
+		for(i=0; i<10;i++){
+					elev_set_motor_direction(DIRN_DOWN);
 				}
 	}
 	else if(forrigeTilstand == BEVEG_NED){
-		for(i=0; i<1000;i++){
-					elev_set_speed(300);
+		for(i=0; i<10;i++){
+					elev_set_motor_direction(DIRN_UP);
 				}
 	}
 }
