@@ -174,6 +174,9 @@ void startHeis(void){
 			//	NOTAT!
 				//	Lar kunder bestille heisen til sin etasje etter at stopknappen er trykket inn, men lar ikke heisen betjene 						kundene før heisen har mottatt en bestilling innenifra, og betjent denne (Kan plukke opp andre kunder på vei mot 						dette målet..). 
 		case OBSTRUKSJON: 
+			bestillingOpp();
+			bestillingNed();
+			bestillingInne();
 			heisData.doerAapenTidTaker = time(NULL);
 			naaTilstand = OBSTRUKSJON;
 			break;
