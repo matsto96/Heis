@@ -22,11 +22,11 @@ void startHeis(void){
 				nesteTilstand = nesteTilstandGittIdle(etasje);
 			}
 			else if(elev_get_floor_sensor_signal() == -1){
-				elev_set_speed(-300);
+				elev_set_motor_direction(DIRN_DOWN);
 				while(1){
 					if(elev_get_floor_sensor_signal() != -1){
 						brems(BEVEG_OPP);
-						elev_set_speed(0);
+						elev_set_motor_direction(DIRN_STOPP);
 						break;
 					}
 				}
@@ -95,7 +95,7 @@ void startHeis(void){
             }
 			break;
 		case OBSTRUKSJON:
-		    elev_set_speed(0);
+			elev_set_motor_direction(DIRN_STOP);
 			if(elev_get_obstruction_signal()){
 				nesteTilstand = OBSTRUKSJON;
 			}
@@ -123,7 +123,7 @@ void startHeis(void){
 		case AAPNE_DOER:
 			if(heisData.doerAapenTidTaker == 0){
 				heisData.doerAapenTidTaker = time(NULL);
-				elev_set_speed(0);
+				elev_set_motor_direction(DIRN_STOP);
 				if(heisData.forrigeEtasje < N_FLOORS && heisData.forrigeEtasje > 0){
 					etasjeUteNedTabell[heisData.forrigeEtasje-1] = 0;
 				}
@@ -140,7 +140,7 @@ void startHeis(void){
 			naaTilstand = AAPNE_DOER;
 			break;
 		case HEIS_OPP:
-			elev_set_speed(300);
+			elev_set_motor_direction(DIRN_UP);
 			naaTilstand = HEIS_OPP;
 			heisData.heisRetning = BEVEG_OPP;	
 			heisData.stopp = 0;
@@ -148,7 +148,7 @@ void startHeis(void){
 			elev_set_door_open_lamp(0);
 			break;
 		case HEIS_NED:
-			elev_set_speed(-300);
+			elev_set_motor_direction(DIRN_DOWN);
 			naaTilstand = HEIS_NED;
 			heisData.heisRetning = BEVEG_NED;
 			heisData.stopp = 0;
@@ -156,7 +156,7 @@ void startHeis(void){
 			elev_set_door_open_lamp(0);	
 			break;
 		case STOPP:                          
-			elev_set_speed(0);		
+			elev_set_motor_direction(DIRN_STOP);		
 			stoppLys(1);
 			if(heisData.stopp == 0){   //Sletter ikke bestillinger fått etter første stopp..! 
 				for(i = 0; i < N_FLOORS; i++){
