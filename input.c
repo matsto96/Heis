@@ -3,13 +3,13 @@
 
 
 
-int etasjeUteNedTabell[N_FLOORS-1];
-int etasjeUteOppTabell[N_FLOORS-1];
-int etasjeInneTabell[N_FLOORS];
+int tabellN[N_FLOORS-1];
+int tabellN[N_FLOORS-1];
+int tabellInne[N_FLOORS];
 
 heisVar heisData;
 
-void etasjeBestillingInne(void){
+void bestillingInne(void){
 	int i;
 	for(i = 0; i < N_FLOORS; i++){
 		if(elev_get_button_signal(BUTTON_COMMAND, i) == 1){
@@ -17,7 +17,7 @@ void etasjeBestillingInne(void){
 		}
 	}
 }
-void etasjeBestillingUteNed(void){
+void bestillingNed(void){
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
 		if(elev_get_button_signal(BUTTON_CALL_DOWN, i+1) == 1){
@@ -25,7 +25,7 @@ void etasjeBestillingUteNed(void){
 		}
 	}
 }
-void etasjeBestillingUteOpp(void){
+void bestillingOpp(void){
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
 		if(elev_get_button_signal(BUTTON_CALL_UP, i) == 1){
