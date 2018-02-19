@@ -10,4 +10,5 @@
   Funksjoner: void check_dir(currentDir); 
           If(no update){
           changeDir();}
-  Variabler: Limit
+  Variabler: Limit case currentDir, dir_up and dir_down
+  
