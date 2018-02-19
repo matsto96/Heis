@@ -18,3 +18,11 @@ Ide
       getNext(currentDir);
       
   case default //idle
+
+
+If Obstruction -> State = obstruction    // If Stop, main-loop stops and exit program
+else if Dir = 0 -> State = Idle
+Else State = Running
+
+Idle -> check_all in switch
+Obstruction -> run update
