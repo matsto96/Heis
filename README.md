@@ -12,3 +12,9 @@
           changeDir();}
   Variabler: Limit case currentDir, dir_up and dir_down
   
+Ide
+  switch (currentDir)
+  case (currentDir != Idle){
+      getNext(currentDir);
+      
+  case default //idle
