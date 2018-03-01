@@ -3,11 +3,11 @@
 
 #include <stdlib.h>
 
-void etasjelysInne(void){
-	etasjeBestillingInne();
+void lysInne(void){
+	bestillingInne();
 	int i;
 	for(i = 0; i < N_FLOORS; i++){
-		if(etasjeInneTabell[i] == 1){
+		if(inneTabell[i] == 1){
 			elev_set_button_lamp(BUTTON_COMMAND, i, 1);
 		}
 		else{
@@ -16,10 +16,10 @@ void etasjelysInne(void){
 	}
 }
 void etasjelysUteNed(void){
-	etasjeBestillingUteNed();
+	bestillingUteNed();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
-		if(etasjeUteNedTabell[i] == 1){
+		if(uteNedTabell[i] == 1){
 			elev_set_button_lamp(BUTTON_CALL_DOWN, i+1, 1);
 		}
 		else{
@@ -28,10 +28,10 @@ void etasjelysUteNed(void){
 	}
 }
 void etasjelysUteOpp(void){
-	etasjeBestillingUteOpp();
+	bestillingUteOpp();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
-		if(etasjeUteOppTabell[i] == 1){
+		if(uteOppTabell[i] == 1){
 			elev_set_button_lamp(BUTTON_CALL_UP, i, 1);
 		}
 		else{
