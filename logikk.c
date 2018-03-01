@@ -67,7 +67,7 @@ void startHeis(void){
 			break;
 		case STOPP:                         
 			for(i = 0; i < N_FLOORS; i++){
-				if(etasjeInneTabell[i] == 1){
+				if(inneTabell[i] == 1){
 					if(i < heisData.forrigeEtasje){
 						nesteTilstand = HEIS_NED;
 						break;
@@ -125,12 +125,12 @@ void startHeis(void){
 				heisData.doerAapenTidTaker = time(NULL);
 				elev_set_motor_direction(DIRN_STOP);
 				if(heisData.forrigeEtasje < N_FLOORS && heisData.forrigeEtasje > 0){
-					etasjeUteNedTabell[heisData.forrigeEtasje-1] = 0;
+					uteNedTabell[heisData.forrigeEtasje-1] = 0;
 				}
 				if(heisData.forrigeEtasje < N_FLOORS-1 && heisData.forrigeEtasje >= 0){
-					etasjeUteOppTabell[heisData.forrigeEtasje] = 0;
+					uteOppTabell[heisData.forrigeEtasje] = 0;
 				}
-				etasjeInneTabell[heisData.forrigeEtasje] = 0;
+				inneTabell[heisData.forrigeEtasje] = 0;
 			}
 			else if(elev_get_obstruction_signal()){
 				naaTilstand = OBSTRUKSJON;
@@ -160,11 +160,11 @@ void startHeis(void){
 			stoppLys(1);
 			if(heisData.stopp == 0){   //Sletter ikke bestillinger fått etter første stopp..! 
 				for(i = 0; i < N_FLOORS; i++){
-					etasjeInneTabell[i] = 0;
+					inneTabell[i] = 0;
 				}
 				for(i = 0; i < N_FLOORS-1; i++){
-					etasjeUteNedTabell[i] = 0;
-					etasjeUteOppTabell[i] = 0;
+					uteNedTabell[i] = 0;
+					uteOppTabell[i] = 0;
 				}
 				heisData.stopp = 1;
 			}
