@@ -15,7 +15,7 @@ void lysInne(void){
 		}
 	}
 }
-void etasjelysUteNed(void){
+void lysUteNed(void){
 	bestillingUteNed();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
@@ -27,7 +27,7 @@ void etasjelysUteNed(void){
 		}
 	}
 }
-void etasjelysUteOpp(void){
+void lysUteOpp(void){
 	bestillingUteOpp();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
@@ -39,7 +39,7 @@ void etasjelysUteOpp(void){
 		}
 	}
 }
-void etasjeIndikatorUte(void){
+void indikatorLysUte(void){
 	int etasje = elev_get_floor_sensor_signal();
 	if(etasje >= 0 && etasje < N_FLOORS){
 		elev_set_floor_indicator(etasje);
