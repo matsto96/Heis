@@ -2,19 +2,19 @@
 #define __INCLUDE_LYS_H__
 
 //Skrur på bestillingslys inne i heiskupéen.
-void etasjelysInne(void);
+void lysInne(void);
 
 
 //Skrur på bestillingslys for å indikere heiskall uteifra i heisretning ned.
-void etasjelysUteNed(void);
+void lysUteNed(void);
 
 
 //Skrur på bestillingslys for å indikere heiskall uteifra i heisretning opp.
-void etasjelysUteOpp(void);
+void lysUteOpp(void);
 
 
 //Setter på lysene til etasjeindikator.
-void etasjeIndikatorUte(void);
+void indikatorLysUte(void);
 
 
 /**
