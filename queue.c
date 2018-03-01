@@ -6,31 +6,31 @@ logikk_tilstand_type nesteTilstand;
 
 logikk_tilstand_type nesteTilstandGittIdle(int etasje){
 		for(i = 0; i < etasje; i++){
-			if(etasjeInneTabell[i] || etasjeUteOppTabell[i]){
+			if(inneTabell[i] || uteOppTabell[i]){
 				return nesteTilstand = HEIS_NED;
 			}
 		}
 		for(i = 0; i < (etasje-1); i++){
-			if(etasjeUteNedTabell[i]){
+			if(uteNedTabell[i]){
 				return nesteTilstand = HEIS_NED;
 			}
 		}
 		for(i = N_FLOORS-1; i > etasje; i--){
-			if(etasjeInneTabell[i]){
+			if(inneTabell[i]){
 				return nesteTilstand = HEIS_OPP;
 			}
 		}
 		for(i = N_FLOORS-2; i >= etasje; i--){
-			if(etasjeUteNedTabell[i]){
+			if(uteNedTabell[i]){
 				return nesteTilstand = HEIS_OPP;
 			}
 		}
 		for(i = N_FLOORS-2; i > etasje; i--){
-			if(etasjeUteOppTabell[i]){
+			if(uteOppTabell[i]){
 				return nesteTilstand = HEIS_OPP;
 			}
 		}
-		if(etasjeInneTabell[etasje] || etasjeUteNedTabell[etasje-1] ||etasjeUteOppTabell[etasje]){
+		if(inneTabell[etasje] || uteNedTabell[etasje-1] ||uteOppTabell[etasje]){
 			return nesteTilstand = AAPNE_DOER;
 		}
 	return IDLE;
@@ -39,7 +39,7 @@ logikk_tilstand_type nesteTilstandGittIdle(int etasje){
 logikk_tilstand_type nesteTilstandGittHeisOpp(int etasje){
 
 	for(i = etasje; i <= N_FLOORS-1; i++){
-		if(etasjeInneTabell[i] || etasjeUteOppTabell[i]) {
+		if(inneTabell[i] || uteOppTabell[i]) {
 			if(etasje==i){
 				brems(BEVEG_OPP);
 				return nesteTilstand=AAPNE_DOER;
@@ -50,7 +50,7 @@ logikk_tilstand_type nesteTilstandGittHeisOpp(int etasje){
 		}
 	}
 	for(i = N_FLOORS-2; i+1 >= etasje; i--){
-		if(etasjeUteNedTabell[i]){
+		if(uteNedTabell[i]){
 			if(i+1==etasje){
 				brems(BEVEG_OPP);
 				return nesteTilstand=AAPNE_DOER;
@@ -64,7 +64,7 @@ logikk_tilstand_type nesteTilstandGittHeisOpp(int etasje){
 }	
 logikk_tilstand_type nesteTilstandGittHeisNed(int etasje){
 	for(i = etasje; i > 0; i--){
-		if(etasjeInneTabell[i] || etasjeUteNedTabell[i-1]){
+		if(inneTabell[i] || uteNedTabell[i-1]){
 			if(i==etasje){
 				brems(BEVEG_NED);
 				return nesteTilstand=AAPNE_DOER;
@@ -74,7 +74,7 @@ logikk_tilstand_type nesteTilstandGittHeisNed(int etasje){
 			}
 		}
 	}
-	if(etasjeInneTabell[0]){
+	if(inneTabell[0]){
 		if(i==etasje){
 			brems(BEVEG_NED);
 			return nesteTilstand=AAPNE_DOER;
@@ -84,7 +84,7 @@ logikk_tilstand_type nesteTilstandGittHeisNed(int etasje){
 		}
 	}
 	for(i = 0; i <= etasje; i++){
-		if(etasjeUteOppTabell[i]){
+		if(uteOppTabell[i]){
 			if(i==etasje){
 				brems(BEVEG_NED);
 				return nesteTilstand=AAPNE_DOER;
@@ -100,7 +100,7 @@ logikk_tilstand_type nesteTilstandGittAapneDoer(int etasje, retning forrigeTilst
 	switch(forrigeTilstand){
 		case IRO: 
 			for(i = 0; i < N_FLOORS; i++){
-				if(etasjeInneTabell[i]){
+				if(inneTabell[i]){
 					if(i < etasje){
 						return nesteTilstand=HEIS_NED;
 					}
@@ -115,17 +115,17 @@ logikk_tilstand_type nesteTilstandGittAapneDoer(int etasje, retning forrigeTilst
 		break;
 		case BEVEG_OPP: 
 			for(i = N_FLOORS-1; i > etasje; i--){
-				if(etasjeInneTabell[i]){
+				if(inneTabell[i]){
 					return nesteTilstand=HEIS_OPP;
 				}
 			}
 			for(i = N_FLOORS-2; i > etasje; i--){
-				if(etasjeUteOppTabell[i]){
+				if(uteOppTabell[i]){
 					return nesteTilstand=HEIS_OPP;
 				}
 			}
 			for(i = N_FLOORS-2; i >= 0; i--){
-				if(etasjeUteNedTabell[i]){
+				if(uteNedTabell[i]){
 					if(i > etasje-1){
 						return nesteTilstand=HEIS_OPP;
 					}
@@ -135,29 +135,29 @@ logikk_tilstand_type nesteTilstandGittAapneDoer(int etasje, retning forrigeTilst
 				}
 			}
 			for(i = 0; i < etasje; i++){
-				if(etasjeInneTabell[i]){
+				if(inneTabell[i]){
 					return nesteTilstand=HEIS_NED;
 				}
 			}
 			for(i = 0; i < etasje; i++){
-				if(etasjeUteOppTabell[i]){
+				if(uteOppTabell[i]){
 					return nesteTilstand=HEIS_NED;
 				}
 			}
 		break;
 		case BEVEG_NED: 
 			for(i = 0; i < etasje; i++){
-				if(etasjeInneTabell[i]){
+				if(inneTabell[i]){
 					return nesteTilstand=HEIS_NED;
 				}
 			}
 			for(i = 0; i < etasje-1; i++){
-				if(etasjeUteNedTabell[i]){
+				if(uteNedTabell[i]){
 					return nesteTilstand=HEIS_NED;
 				}
 			}
 			for(i = 0; i < N_FLOORS-1; i++){
-				if(etasjeUteOppTabell[i]){
+				if(uteOppTabell[i]){
 					if(i < etasje){
 						return nesteTilstand=HEIS_NED;
 					}
@@ -167,12 +167,12 @@ logikk_tilstand_type nesteTilstandGittAapneDoer(int etasje, retning forrigeTilst
 				}
 			}
 			for(i = N_FLOORS-1; i > etasje; i--){
-				if(etasjeInneTabell[i]){
+				if(inneTabell[i]){
 					return nesteTilstand=HEIS_OPP;
 				}
 			}
 			for(i = N_FLOORS-2; i > etasje-1; i--){
-				if(etasjeUteNedTabell[i]){
+				if(uteNedTabell[i]){
 					return nesteTilstand=HEIS_OPP;
 				}
 			}
