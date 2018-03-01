@@ -3,9 +3,9 @@
 
 
 
-int tabellN[N_FLOORS-1];
-int tabellN[N_FLOORS-1];
-int tabellInne[N_FLOORS];
+int uteOppTabell[N_FLOORS-1];
+int uteNedTabell[N_FLOORS-1];
+int inneTabell[N_FLOORS];
 
 heisVar heisData;
 
