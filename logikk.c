@@ -26,7 +26,7 @@ void startHeis(void){
 				while(1){
 					if(elev_get_floor_sensor_signal() != -1){
 						brems(BEVEG_OPP);
-						elev_set_motor_direction(DIRN_STOPP);
+						elev_set_motor_direction(DIRN_STOP);
 						break;
 					}
 				}
