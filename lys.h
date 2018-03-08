@@ -6,15 +6,15 @@ void lysInne(void);
 
 
 //Skrur på bestillingslys for å indikere heiskall uteifra i heisretning ned.
-void lysUteNed(void);
+void lysNed(void);
 
 
 //Skrur på bestillingslys for å indikere heiskall uteifra i heisretning opp.
-void lysUteOpp(void);
+void lysOpp(void);
 
 
 //Setter på lysene til etasjeindikator.
-void indikatorLysUte(void);
+void etasjeLys(void);
 
 
 /**
