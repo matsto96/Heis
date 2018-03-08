@@ -16,7 +16,7 @@ void lysInne(void){
 	}
 }
 void lysUteNed(void){
-	bestillingUteNed();
+	bestillingNed();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
 		if(tabellNed[i] == 1){
@@ -28,7 +28,7 @@ void lysUteNed(void){
 	}
 }
 void lysUteOpp(void){
-	bestillingUteOpp();
+	bestillingOpp();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
 		if(tabellOpp[i] == 1){
