@@ -156,8 +156,15 @@ void startHeis(void){
 			elev_set_door_open_lamp(0);	
 			break;
 		case STOPP:                          
-			elev_set_motor_direction(DIRN_STOP);		
-			stoppLys(1);
+			elev_set_motor_direction(DIRN_STOP);
+			if(elev_get_floor_signal() != -1){
+				nesteTilstand = AAPNE_DOER;
+				break;
+			}
+			if(heisData.stopp == 0){
+				stoppLys(1);
+				heisData.stopp = 1;
+			}
 			if(heisData.stopp == 0){   //Sletter ikke bestillinger fått etter første stopp..! 
 				for(i = 0; i < N_FLOORS; i++){
 					tabellInne[i] = 0;
