@@ -7,7 +7,7 @@ void lysInne(void){
 	bestillingInne();
 	int i;
 	for(i = 0; i < N_FLOORS; i++){
-		if(inneTabell[i] == 1){
+		if(tabellInne[i] == 1){
 			elev_set_button_lamp(BUTTON_COMMAND, i, 1);
 		}
 		else{
@@ -19,7 +19,7 @@ void lysUteNed(void){
 	bestillingUteNed();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
-		if(uteNedTabell[i] == 1){
+		if(tabellNed[i] == 1){
 			elev_set_button_lamp(BUTTON_CALL_DOWN, i+1, 1);
 		}
 		else{
@@ -31,7 +31,7 @@ void lysUteOpp(void){
 	bestillingUteOpp();
 	int i;
 	for(i = 0; i < N_FLOORS-1; i++){
-		if(uteOppTabell[i] == 1){
+		if(tabellOpp[i] == 1){
 			elev_set_button_lamp(BUTTON_CALL_UP, i, 1);
 		}
 		else{
