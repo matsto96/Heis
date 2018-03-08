@@ -10,9 +10,9 @@ void startHeis(void){
 	//For å forhindre at et heiskall i heisens nåværende etasje skal resultere i at ordren blir registret, slettet og registrert igjen i det 		tidsintervallet knappen holdes inne. (Siden programmet kjøres mange ganger i det tidsintervallet knappen holdes inne i et knapptrykk)
 	if(!(heisData.doerAapenTidTaker >= time(NULL) && heisData.doerAapenTidTaker+1 > time(NULL))){
 		lysInne();
-		lysUteNed();
-		lysUteOpp();
-		indikatorLysUte();
+		lysNed();
+		lysOpp();
+		etasjeLys();
 	}
 	switch(naaTilstand){
 		case IDLE:
@@ -177,6 +177,9 @@ void startHeis(void){
 			bestillingOpp();
 			bestillingNed();
 			bestillingInne();
+			lysInne();
+			lysOpp();
+			lysNed();
 			heisData.doerAapenTidTaker = time(NULL);
 			naaTilstand = OBSTRUKSJON;
 			break;
